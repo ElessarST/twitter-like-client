@@ -1,0 +1,57 @@
+<div class="tweet-container" [class.hide-actions]="hideActions" (click)="goToTweet()">
+  <a [routerLink]="['/profile', tweet.createdBy.username]">
+    <app-avatar [url]="tweet.createdBy.photoUrl"></app-avatar>
+  </a>
+  <div class="tweet-content">
+    <div class="tweet-meta-info">
+      <a [routerLink]="['/profile', tweet.createdBy.username]">
+        <span class="tweet-meta-item tweet-meta-info-name">{{ tweet.createdBy.name }}</span>
+      </a>
+      <a [routerLink]="['/profile', tweet.createdBy.username]">
+        <span class="tweet-meta-item tweet-meta-info-secondary">@{{ tweet.createdBy.username }}</span>
+      </a>
+      <span class="tweet-meta-item tweet-meta-info-secondary">{{ tweet.createdAt | tweetDate }}</span>
+    </div>
+    <div>
+      <span>{{ tweet.text }}</span>
+    </div>
+    <div *ngIf="tweet.photos && tweet.photos.length" class="tweet-photos">
+      <img *ngFor="let photo of tweet.photos" [src]="photo" class="tweet-photo" (click)="openPreview($event, photo)"/>
+    </div>
+    <div *ngIf="tweet.retweetFrom && !hideSubTweets">
+      <p class="sub-tweet-header">Retweet from</p>
+      <app-tweet hideActions="true" [tweet]="tweet.retweetFrom"></app-tweet>
+    </div>
+    <div *ngIf="tweet.replyTo && !hideSubTweets">
+      <p class="sub-tweet-header">Reply to</p>
+      <app-tweet hideActions="true" [tweet]="tweet.replyTo"></app-tweet>
+    </div>
+    <div class="tweet-actions" *ngIf="!hideActions">
+      <button
+        mat-icon-button
+        class="icon-button-highlight tweet-action small-icon-button"
+        [class.active]="isLiked"
+        (click)="like($event)"
+      >
+        <mat-icon>favorite</mat-icon>
+        <span class="tweet-action-desc">{{ likesCount }}</span>
+      </button>
+      <button
+        mat-icon-button
+        class="icon-button-highlight tweet-action small-icon-button"
+        (click)="openReplyDialog($event)"
+      >
+        <mat-icon>comment</mat-icon>
+        <span class="tweet-action-desc">{{ repliesCount }}</span>
+      </button>
+      <button
+        mat-icon-button
+        class="icon-button-highlight tweet-action small-icon-button"
+        (click)="openRetweetDialog($event)"
+      >
+        <mat-icon>share</mat-icon>
+        <span class="tweet-action-desc">{{ tweet.retweetsCount }}</span>
+      </button>
+    </div>
+  </div>
+</div>

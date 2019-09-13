@@ -1,0 +1,57 @@
+<mat-card class="card-container">
+  <mat-card-title>Sign Up to Twitter Like App</mat-card-title>
+  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <div class="signup-wrapper">
+      <app-avatar
+        large="true"
+        changeable="true"
+        (onChange)="onPhotoChange($event)"
+        [url]="values.photoUrl"
+      ></app-avatar>
+      <mat-card-content class="card-content">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Username" formControlName="username"/>
+          <mat-error>
+            <app-server-error [form]="signUpForm" field="username"></app-server-error>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Email" formControlName="email" type="email"/>
+          <mat-error>
+            <app-server-error [form]="signUpForm" field="email"></app-server-error>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Name" formControlName="name"/>
+          <app-server-error [form]="signUpForm" field="name"></app-server-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Bio</mat-label>
+          <textarea matInput placeholder="Add Your Bio" formControlName="bio"></textarea>
+          <app-server-error [form]="signUpForm" field="bio"></app-server-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Password" type="password" formControlName="password"/>
+        </mat-form-field>
+        <div class="actions">
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="signUpForm.invalid"
+            class="signup-action"
+          >
+            <span *ngIf="!loading">Sign Up</span>
+            <div class="centered-spinner-container" *ngIf="loading">
+              <mat-spinner [diameter]="32"></mat-spinner>
+            </div>
+          </button>
+          <a routerLink="/login" class="login-action">Already have an account? Login Here!</a>
+        </div>
+      </mat-card-content>
+    </div>
+  </form>
+</mat-card>

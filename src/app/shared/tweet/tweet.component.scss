@@ -1,0 +1,80 @@
+@import "~src/theme";
+
+.tweet-container {
+  display: flex;
+  padding: 16px;
+
+  &:not(.hide-actions):hover {
+    background-color: #192734;
+    cursor: pointer;
+  }
+}
+
+.tweet-content {
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 16px;
+}
+
+.tweet-meta-info {
+  display: flex;
+
+  & a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  & .tweet-meta-item {
+    font-weight: bold;
+    margin-right: 8px;
+  }
+
+  margin-bottom: 8px;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+
+.tweet-meta-info-secondary {
+  color: $text-secondary-color;
+}
+
+.tweet-actions {
+  margin-top: 8px;
+}
+
+.tweet-action-desc {
+  margin-left: 4px;
+}
+
+.tweet-action {
+  margin-right: 32px;
+  color: $text-secondary-color;
+
+  &.active {
+    color: $primary-color
+  }
+}
+
+.tweet-photo {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  height: 100%;
+}
+
+.tweet-photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 8px;
+  grid-auto-rows: minmax(250px, auto);
+  margin-top: 16px;
+}
+
+.sub-tweet-header {
+  color: $text-secondary-color;
+  margin-bottom: 0;
+}

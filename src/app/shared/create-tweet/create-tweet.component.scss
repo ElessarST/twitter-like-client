@@ -1,0 +1,87 @@
+@import "~src/theme";
+
+.tweet-input {
+  width: 100%;
+}
+
+.create-tweet-form {
+  display: flex;
+}
+
+.avatar-container {
+  margin-right: 16px;
+}
+
+.create-tweet-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.create-tweet-actions {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.attachments-input {
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+.attachments-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.attachment {
+  position: relative;
+  height: 150px;
+  width: 150px;
+  margin-right: 8px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.attachment-photo {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+}
+
+.remove-attachment {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: rgba(0, 0, 0, 0.77);
+  color: white;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.attach-image-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  color: $primary-color;
+  padding: 8px;
+
+  &:hover {
+    cursor: pointer;
+    background: $background-color;
+  }
+}
